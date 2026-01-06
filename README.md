@@ -1,5 +1,5 @@
 
-# Triangle Iron - AI Advertising Video Generation System / 三角铁--AI广告视频生成系统
+# Triangle - AI Advertising Video Generation System / 三角铁--AI广告视频生成系统
 
 <p align="center">
     <img src="adplay.ico" alt="Logo" width="128" height="128">
