@@ -1,3 +1,4 @@
+
 # Triangle Iron - AI Advertising Video Generation System / 三角铁--AI广告视频生成系统
 
 <p align="center">
@@ -227,3 +228,7 @@ pyinstaller ad_tool.spec
 - 若你基于本系统进行修改、二次开发后分发，需在修改后的代码中明确标注修改记录（包括修改内容、修改时间、修改人），并保留原始版权声明和本许可证文本。
 
 </div>
+
+# Triangle
+三角铁，AI广告生成系统 Triangle, An AI Ad Tool
+
