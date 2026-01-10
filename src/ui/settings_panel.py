@@ -476,7 +476,7 @@ class SettingsPanel(QWidget):
             
             # 应用语言设置
             if new_lang != lang_manager.current_lang:
-                lang_manager.set_language(new_lang)
+                lang_manager.set_language(new_lang, save=False)
                 QMessageBox.information(
                     self, 
                     lang_manager.tr("info"), 

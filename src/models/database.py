@@ -3,6 +3,7 @@
 """
 import sqlite3
 import os
+import sys
 import json
 from datetime import datetime
 from typing import List, Optional
@@ -12,9 +13,20 @@ from .project import Project
 class DatabaseManager:
     """SQLite数据库管理器"""
     
-    def __init__(self, db_path: str = "./data/projects.db"):
-        self.db_path = db_path
-        self.projects_dir = "./projects"
+    def __init__(self, db_path: str = None):
+        if getattr(sys, 'frozen', False):
+            base_dir = os.path.dirname(sys.executable)
+        else:
+            # Use current working directory or deduce from file path
+            # Using "." relies on CWD, which is usually fine if run via script
+            base_dir = "."
+            
+        if db_path is None:
+            self.db_path = os.path.join(base_dir, "data", "projects.db")
+        else:
+            self.db_path = db_path
+            
+        self.projects_dir = os.path.join(base_dir, "projects")
         self._init_database()
         
     def _init_database(self):

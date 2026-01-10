@@ -321,7 +321,7 @@ TRANSLATIONS = {
         "style_warm": "温馨治愈",
         "title_replace_frame": "替换分镜",
         "title_save_grid": "保存九宫格",
-        "video_info_format": "{} ({}秒)",
+        "video_info_format": "{}s ({}x{} @ {}fps)",
         "video_prompt_placeholder": "视频脚本描述...",
         "video_script_group": "视频脚本与配音",
         "video_script_title_format": "第 {} 集脚本",
@@ -693,6 +693,6 @@ TRANSLATIONS = {
         "status_merging_videos": "Merging Videos...",
         "title_replace_frame": "Replace Frame",
         "title_save_grid": "Save Grid",
-        "video_info_format": "{} ({}s)",
+        "video_info_format": "{}s ({}x{} @ {}fps)",
     }
 }

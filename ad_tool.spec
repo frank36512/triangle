@@ -1,4 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
+from PyInstaller.utils.hooks import collect_all
+import os
+import cv2
+
 """
 PyInstaller配置文件
 用于将应用打包为独立的EXE文件
@@ -6,13 +10,29 @@ PyInstaller配置文件
 
 block_cipher = None
 
+# 获取cv2的路径
+cv2_dir = os.path.dirname(cv2.__file__)
+
+# 收集 cv2 的所有依赖
+cv2_datas, cv2_binaries, cv2_hiddenimports = collect_all('cv2')
+
+# 确保cv2在datas中
+found_cv2_in_datas = False
+for src, dest in cv2_datas:
+    if dest == 'cv2':
+        found_cv2_in_datas = True
+        break
+
+if not found_cv2_in_datas:
+    cv2_datas.append((cv2_dir, 'cv2'))
+
 a = Analysis(
     ['main.py'],
-    pathex=[],
-    binaries=[],
+    pathex=['E:\\ad_tool\\venv\\Lib\\site-packages'],
+    binaries=cv2_binaries,
     datas=[
         ('resources', 'resources'),  # 包含资源文件
-    ],
+    ] + cv2_datas,
     hiddenimports=[
         'PyQt6',
         'PyQt6.QtCore',
@@ -25,7 +45,8 @@ a = Analysis(
         'requests',
         'aiohttp',
         'cv2',
-    ],
+        'numpy',
+    ] + cv2_hiddenimports,
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

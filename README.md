@@ -131,6 +131,17 @@ The executable will be in the `dist/` directory.
 - **视频合成**：调用视频生成API合成完整视频
 - **个性化**：支持提示词编辑、分镜替换等个性化调整
 
+## 演示与截图
+
+### 演示视频
+[![演示视频](shot-cover.png)](addemovideo.mp4)
+
+### 软件截图
+<img src="shot-1.png" alt="截图 1" width="45%"> <img src="shot-2.png" alt="截图 2" width="45%">
+
+## 下载地址
+[下载打包版 (夸克网盘)](https://pan.quark.cn/s/16750788911f)
+
 ## 系统架构
 
 ```

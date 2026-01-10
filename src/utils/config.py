@@ -3,13 +3,26 @@
 """
 import json
 import os
+import sys
 from typing import Dict, Any
 
 
 class Config:
     """配置管理类"""
     
-    def __init__(self, config_file: str = "./data/config.json"):
+    def __init__(self, config_file: str = None):
+        if config_file is None:
+            if getattr(sys, 'frozen', False):
+                # If frozen (EXE), look in the same directory as the executable
+                project_root = os.path.dirname(sys.executable)
+            else:
+                # If running from source
+                # src/utils/config.py -> src/utils -> src -> root
+                current_dir = os.path.dirname(os.path.abspath(__file__))
+                project_root = os.path.dirname(os.path.dirname(current_dir))
+            
+            config_file = os.path.join(project_root, "data", "config.json")
+            
         self.config_file = config_file
         self.config_data = {}
         self.load()

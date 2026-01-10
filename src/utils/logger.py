@@ -1,13 +1,14 @@
 """
 日志模块
 """
+import sys
 import logging
 import os
 from logging.handlers import RotatingFileHandler
 from datetime import datetime
 
 
-def setup_logger(name: str = "ad_tool", log_dir: str = "./logs") -> logging.Logger:
+def setup_logger(name: str = "ad_tool", log_dir: str = None) -> logging.Logger:
     """
     设置日志记录器
     
@@ -18,6 +19,13 @@ def setup_logger(name: str = "ad_tool", log_dir: str = "./logs") -> logging.Logg
     Returns:
         配置好的日志记录器
     """
+    if log_dir is None:
+        if getattr(sys, 'frozen', False):
+            base_dir = os.path.dirname(sys.executable)
+        else:
+            base_dir = "."
+        log_dir = os.path.join(base_dir, "logs")
+
     # 创建日志目录
     os.makedirs(log_dir, exist_ok=True)
     

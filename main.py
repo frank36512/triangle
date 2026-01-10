@@ -14,14 +14,28 @@ from src.utils.language import lang_manager
 def main():
     """主函数"""
     try:
+        # 修复 Windows 下 PyQt6 多媒体后端问题
+        if os.name == 'nt':
+            os.environ['QT_MEDIA_BACKEND'] = 'windows'
+            
+            # 显式设置插件路径，确保能找到 windowsmediaplugin.dll
+            try:
+                import PyQt6
+                qt_path = os.path.dirname(PyQt6.__file__)
+                plugin_path = os.path.join(qt_path, "Qt6", "plugins")
+                if os.path.exists(plugin_path):
+                    os.environ['QT_PLUGIN_PATH'] = plugin_path
+            except ImportError:
+                pass
+
         print("=" * 60)
         print(lang_manager.tr("startup_msg"))
         print("=" * 60)
         
         # 创建应用程序
         app = QApplication(sys.argv)
-        app.setApplicationName("AdTool")
-        app.setOrganizationName("AdTool")
+        app.setApplicationName("Triangle")
+        app.setOrganizationName("Triangle")
         
         print(lang_manager.tr("app_created"))
         

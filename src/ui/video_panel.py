@@ -620,7 +620,19 @@ class VideoPanel(QWidget):
         self.audio_output = QAudioOutput()
         self.media_player.setAudioOutput(self.audio_output)
         self.media_player.setVideoOutput(self.video_widget)
+        self.media_player.errorOccurred.connect(self.on_player_error)
+        self.media_player.mediaStatusChanged.connect(self.on_media_status_changed)
         
+    def on_player_error(self):
+        err_msg = self.media_player.errorString()
+        print(f"播放器错误: {err_msg}")
+        # Only show dialog if it's a real error, not just stopping
+        if err_msg:
+             QMessageBox.warning(self, lang_manager.tr("error"), f"无法播放视频: {err_msg}")
+
+    def on_media_status_changed(self, status):
+        print(f"媒体状态变更: {status}")
+
     def refresh_api_list(self):
         """刷新视频接口列表"""
         self.api_provider_combo.clear()
@@ -1199,7 +1211,9 @@ class VideoPanel(QWidget):
         """加载视频"""
         if os.path.exists(video_path):
             from PyQt6.QtCore import QUrl
-            self.media_player.setSource(QUrl.fromLocalFile(video_path))
+            # 转换为绝对路径，确保播放器能正确加载
+            abs_path = os.path.abspath(video_path)
+            self.media_player.setSource(QUrl.fromLocalFile(abs_path))
             
             # 获取视频信息
             video_info = VideoService.get_video_info(video_path)

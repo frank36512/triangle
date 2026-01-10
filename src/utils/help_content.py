@@ -151,7 +151,7 @@ HELP_CONTENT = {
             <h2>ℹ️ 关于</h2>
             
             <div class="info">
-                <p class="version">AI广告视频生成系统 v1.0.0</p>
+                <p class="version">三角铁-AI广告视频生成系统 v1.0.0</p>
                 <p>一款基于AI技术的广告视频自动生成工具</p>
             </div>
             
@@ -332,7 +332,7 @@ HELP_CONTENT = {
             <h2>ℹ️ About</h2>
             
             <div class="info">
-                <p class="version">AI Ad Video Generator v1.0.0</p>
+                <p class="version">Triangle-AI Ad Video Generator v1.0.0</p>
                 <p>AI-powered automatic advertising video generation tool</p>
             </div>
             
